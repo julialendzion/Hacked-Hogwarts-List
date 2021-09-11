@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Hogwarts School of Witchcraft and Wizardry</h1>
+    </header>
+    <main>
+      <p>
+        <button id="gryf" class="filter" data-action="filter" data-filter="gryffindor">Students of Gryffindor</button>
+        <button id="slyt" class="filter" data-action="filter" data-filter="slytherin">Students of Slytherin</button>
+        <button id="huff" class="filter" data-action="filter" data-filter="hufflepuff">Students of Hufflepuff</button>
+        <button id="rav" class="filter" data-action="filter" data-filter="ravenclaw">Students of Ravenclaw</button>
+        <button id="" class="filter" data-action="filter" data-filter="resposibilities">Students w. resposibilities</button>
+        <button id="" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
+        <button id="" class="filter" data-action="filter" data-filter="*">All students</button>
+      </p>
+      <table id="list" class="list_categories">
+        <thead>
+          <tr id="sorting">
+            <th data-action="sort" data-sort-direction="asc" data-sort="name">first name</th>
+            <th data-action="sort" data-sort-direction="asc" data-sort="type">middle name</th>
+            <th data-action="sort" data-sort-direction="asc" data-sort="desc">last name</th>
+            <th data-action="sort" data-sort-direction="asc" data-sort="desc">nickname</th>
+            <th data-action="sort" data-sort-direction="asc" data-sort="desc">house</th>
+          </tr>
+        </thead>
+        <tbody id="active">
+          <!-- animal template will be copied and inserted here -->
+        </tbody>
+      </table>
+
+      <template id="student">
+        <tr>
+          <td data-field="first-name">NAME</td>
+          <td data-field="middle-name">MIDDLE</td>
+          <td data-field="last-name">LAST</td>
+          <td data-field="nickname">NICK</td>
+          <td data-field="house">HOUSE</td>
+        </tr>
+      </template>
+    </main>
+    <footer></footer>
+  </body>
+  <script src="script.js"></script>
+</html>
