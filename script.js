@@ -3,6 +3,7 @@
 window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
+let popup = document.querySelector("#popup");
 
 const Student = {
   imageUrl: "",
@@ -55,7 +56,8 @@ function prepareObject(jsonObject) {
   student.middleName = getStudentsMiddleName(jsonObject.fullname.trim());
   student.nickname = getStudentsNickname(jsonObject.fullname.trim());
   student.house = getHouse(jsonObject.house.trim());
-
+  student.imageUrl = getImage(student.lastName, student.firstName);
+  console.log(student);
   return student;
 }
 
@@ -113,9 +115,21 @@ function displayStudent(student) {
   clone.querySelector("[data-field=last-name]").textContent = student.lastName;
   clone.querySelector("[data-field=nickname]").textContent = student.nickname;
   clone.querySelector("[data-field=house]").textContent = student.house;
-
+  clone.querySelector("[data-field=first-name]").addEventListener("click", () => showPopUp(student));
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
+}
+// --> TO DO blood generate status
+function showPopUp(student) {
+  console.log("pop up");
+  popup.classList.remove("hidden");
+
+  popup.querySelector(".student_image").src = `img/${student.imageUrl}`;
+  popup.querySelector(".name").textContent = ` ${student.firstName} ${student.middleName} `;
+  popup.querySelector(".surname").textContent = student.lastName;
+  popup.querySelector(".house").textContent = student.house;
+  popup.querySelector(".blood").textContent = "blood status:";
+  popup.querySelector(".prefect").textContent = "prefect or not:";
 }
 
 ////// CLEANING THE DATA ////////
@@ -156,6 +170,27 @@ function getStudentsNickname(fullName) {
     // console.log(nickNameWithoutQuotes);
     const cleanNickName = clean(nickNameWithoutQuotes);
     return cleanNickName;
+  }
+}
+
+function getImage(lastname, firstname) {
+  // lastname_firstletteroffirstname.png
+
+  if (lastname !== undefined) {
+    const smallLastName = lastname.toLowerCase();
+    const smallFirstName = firstname.toLowerCase();
+    const firstLetterOfFirstName = firstname.slice(0, 1).toLowerCase();
+    if (lastname == "Patil") {
+      const imageSrc = `${smallLastName}_${smallFirstName}.png`;
+      return imageSrc;
+    } else if (lastname.includes("-") == true) {
+      const partOfLastNameAfterHyphen = lastname.slice(lastname.indexOf("-") + 1);
+      const imageSrc = `${partOfLastNameAfterHyphen}_${firstLetterOfFirstName}.png`;
+      return imageSrc;
+    } else {
+      const imageSrc = `${smallLastName}_${firstLetterOfFirstName}.png`;
+      return imageSrc;
+    }
   }
 }
 

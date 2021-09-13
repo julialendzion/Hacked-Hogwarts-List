@@ -9,41 +9,76 @@
   <body>
     <header>
       <h1>Hogwarts School of Witchcraft and Wizardry</h1>
+<span></span>
+      <h2> &#10023 &#8902 Class of 1991 &#11090 &#10022  </h2>
+      <!-- &#9790 -->
     </header>
     <main>
-      <p>
-        <button id="gryf" class="filter" data-action="filter" data-filter="gryffindor">Students of Gryffindor</button>
-        <button id="slyt" class="filter" data-action="filter" data-filter="slytherin">Students of Slytherin</button>
-        <button id="huff" class="filter" data-action="filter" data-filter="hufflepuff">Students of Hufflepuff</button>
-        <button id="rav" class="filter" data-action="filter" data-filter="ravenclaw">Students of Ravenclaw</button>
-        <button id="" class="filter" data-action="filter" data-filter="resposibilities">Students w. resposibilities</button>
-        <button id="" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
-        <button id="" class="filter" data-action="filter" data-filter="*">All students</button>
-      </p>
-      <table id="list" class="list_categories">
-        <thead>
-          <tr id="sorting">
-            <th data-action="sort" data-sort-direction="asc" data-sort="name">first name</th>
-            <th data-action="sort" data-sort-direction="asc" data-sort="type">middle name</th>
-            <th data-action="sort" data-sort-direction="asc" data-sort="desc">last name</th>
-            <th data-action="sort" data-sort-direction="asc" data-sort="desc">nickname</th>
-            <th data-action="sort" data-sort-direction="asc" data-sort="desc">house</th>
-          </tr>
-        </thead>
-        <tbody id="active">
-          <!-- animal template will be copied and inserted here -->
-        </tbody>
-      </table>
+      <div id="columns">
+        <section id="sec1">
+          <p>
+            <button id="gryf" class="filter" data-action="filter" data-filter="gryffindor">Students of Gryffindor</button>
+            <button id="slyt" class="filter" data-action="filter" data-filter="slytherin">Students of Slytherin</button>
+            <button id="huff" class="filter" data-action="filter" data-filter="hufflepuff">Students of Hufflepuff</button>
+            <button id="rav" class="filter" data-action="filter" data-filter="ravenclaw">Students of Ravenclaw</button>
+            <button id="" class="filter" data-action="filter" data-filter="resposibilities">Students w. resposibilities</button>
+            <button id="" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
+            <button id="" class="filter" data-action="filter" data-filter="*">All students</button>
+          </p>
+          <table id="list" class="list_categories">
+            <thead>
+              <tr id="sorting">
+                <th class="bi bi-filter" data-action="sort" data-sort-direction="asc" data-sort="name">&#11139 first name</th>
+                <th data-action="sort" data-sort-direction="asc" data-sort="type">middle name</th>
+                <th data-action="sort" data-sort-direction="asc" data-sort="desc">last name</th>
+                <th data-action="sort" data-sort-direction="asc" data-sort="desc">nickname</th>
+                <th data-action="sort" data-sort-direction="asc" data-sort="desc">house</th>
+              </tr>
+            </thead>
+            <tbody id="active">
+              <!-- animal template will be copied and inserted here -->
+            </tbody>
+          </table>
 
-      <template id="student">
-        <tr>
-          <td data-field="first-name">NAME</td>
-          <td data-field="middle-name">MIDDLE</td>
-          <td data-field="last-name">LAST</td>
-          <td data-field="nickname">NICK</td>
-          <td data-field="house">HOUSE</td>
-        </tr>
-      </template>
+          <template id="student">
+            <tr>
+              <td data-field="first-name">NAME</td>
+              <td data-field="middle-name">MIDDLE</td>
+              <td data-field="last-name">LAST</td>
+              <td data-field="nickname">NICK</td>
+              <td data-field="house">HOUSE</td>
+            </tr>
+          </template>
+        </section>
+        <section id="sec2">
+          <div id="nr_box">
+            <p>Number of students bla bla</p>
+          </div>
+        </section>
+      </div>
+      <!-- POP UP -->
+      <div id="popup" class="hidden">
+        <div id="row1">
+          <div>
+            <img src="" alt="" class="student_image" />
+          </div>
+          <div>
+            <h2 class="name"></h2>
+            <h2 class="surname"></h2>
+            <h3 class="house"></h3>
+          </div>
+          <div>X</div>
+        </div>
+        <div id="row2">
+          <button>EXPELL</button>
+          <p class="blood"></p>
+          <p class="prefect"></p>
+          <p class="expel_stat"></p>
+          <p class="squad"></p>
+        </div>
+        <!--add hide after styleing complete -->
+      </div>
+      <!-- POP UP END -->
     </main>
     <footer></footer>
   </body>

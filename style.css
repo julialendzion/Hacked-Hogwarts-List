@@ -1,7 +1,68 @@
 @import url("http://fonts.cdnfonts.com/css/harry-potter");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Urbanist&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+:root {
+  --color-1: #c7c3c6;
+  --color-2: #b4b3b7;
+  --color-3: #203665;
+  --color-4: #ffc543;
+  --color-5: #4e0d12;
+  --color-6: #3b464d;
+  --color-7: #1b1d19;
+  --font-1: "myriad-pro", sans-serif;
+  --font-2: "Harry Potter", sans-serif;
+  --font-3: "Urbanist", sans-serif;
+  --font-4: "Sacramento", cursive;
+}
+
+h1 {
+  color: var(--color-3);
+  font-family: var(--font-3);
+  font-size: 4.5vw;
+  margin-bottom: 2px;
+}
+h2 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-4);
+  color: var(--color-7);
+}
+.hidden {
+  display: none;
+}
+
+button.filter {
+  border: 1.5px solid var(--color-6);
+  background-color: var(--color-1);
+  margin: 5px;
+}
+#columns {
+  display: flex;
+  gap: 20px;
+}
+
+#sec1 {
+  width: 65%;
+}
+
+#sec2 {
+  width: 35%;
+}
+
+#nr_box {
+  background-color: var(--color-2);
+  margin-top: 170px;
+  padding: 20px;
+  border: 2px solid var(--color-3);
+}
 
 html {
+  background-color: var(--color-1);
   font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 [data-action] {
@@ -14,7 +75,7 @@ html {
   scale: 98%;
 }
 
-/* #gryf {
+/*#gryf:hover {
   border: 2px solid #ffc500;
   background-color: #7f0909;
   color: #ffc500;
@@ -36,22 +97,43 @@ html {
   background-color: navy;
   color: burlywood;
 } */
+
+/*---------TABLE ---------*/
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
 tr th {
   text-align: left;
-  font-weight: 600;
-  padding: 10px;
+  font-weight: 200;
+  padding: 20px;
 }
 
 #list tbody tr td {
   padding: 10px;
-}
-#list {
-  border: 3px solid whitesmoke;
+  margin-right: 15px;
 }
 
+/* #list {
+  border: 3px solid var(--color-2);
+} */
+
 #list tbody tr:nth-child(2n + 1) td {
-  background-color: whitesmoke;
+  background-color: var(--color-2);
 }
-h1 {
-  font-family: "Harry Potter", sans-serif;
+
+/* -------------POP UP STYLING---------------- */
+
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: var(--color-2);
+}
+
+#row1 {
+  display: flex;
+  gap: 3vw;
 }
