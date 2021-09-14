@@ -20,6 +20,12 @@ const Student = {
   expel: false,
 };
 
+const settings = {
+  filter: "all",
+  sortBy: "name",
+  sortDir: "asc",
+};
+
 function start() {
   console.log("ready");
 
@@ -66,33 +72,54 @@ function prepareObject(jsonObject) {
 function selectFilter(event) {
   const filter = event.target.dataset.filter;
   console.log(`user selected ${filter}`);
-  filterList(filter);
+  setFilter(filter);
+}
+
+function setFilter(filter) {
+  settings.filterBy = filter; //sending the filter param to the global object
+  buildList();
 }
 
 function selectSort(event) {
   const sortBy = event.target.dataset.sort;
-  console.log(`user selected ${sortBy}`);
-  sortList(sortBy);
+  const sortDir = event.target.dataset.sortDirection;
+
+  //toggle the direction
+  if (sortDir === "asc") {
+    event.target.dataset.sortDirection = "desc";
+  } else {
+    event.target.dataset.sortDirection = "asc";
+  }
+
+  console.log(`user selected ${sortBy} ${sortDir}`);
+  setSort(sortBy, sortDir); // sending  two parameters to the setSort function
 }
 
-function filterList(house) {
-  let filteredList = allStudents;
-  if (house === "gryffindor") {
+function setSort(sortBy, sortDir) {
+  settings.sortBy = sortBy; // adding those parameters to the global object
+  settings.sortDir = sortDir;
+  buildList();
+}
+
+function filterList(filteredList) {
+  //let filteredList = allStudents;
+
+  if (settings.filterBy === "gryffindor") {
     filteredList = allStudents.filter(isGryffindor);
-  } else if (house === "slytherin") {
+  } else if (settings.filterBy === "slytherin") {
     filteredList = allStudents.filter(isSlytherin);
-  } else if (house === "hufflepuff") {
+  } else if (settings.filterBy === "hufflepuff") {
     filteredList = allStudents.filter(isHufflepuff);
-  } else if (house === "ravenclaw") {
+  } else if (settings.filterBy === "ravenclaw") {
     filteredList = allStudents.filter(isRavenclaw);
   }
-  displayList(filteredList);
+  return filteredList;
 }
 
 function isGryffindor(student) {
   return student.house === "Gryffindor"; // ---> to samo co warunek skrót!!
 }
-
+/// --- FILTERS ------
 function isSlytherin(student) {
   return student.house === "Slytherin"; // ---> to samo co warunek skrót!!
 }
@@ -103,43 +130,35 @@ function isHufflepuff(student) {
 function isRavenclaw(student) {
   return student.house === "Ravenclaw"; // ---> to samo co warunek skrót!!
 }
+/// --- END OF FILTERS ------
 
-function sortList(sortBy) {
-  const list = allStudents;
+function sortList(sortedList) {
+  let direction = 1;
 
-  if (sortBy === "name") {
-    let sortedList = list.sort(sortByName);
-  } else if (sortBy === "middleName") {
-    let sortedList = list.sort(sortByMiddleName);
-  } else if (sortBy === "lastName") {
-    let sortedList = list.sort(sortByLastName);
+  if (settings.sortDir === "desc") {
+    direction = -1;
+  } else {
+    direction = 1;
   }
 
-  displayList(list);
+  sortedList = sortedList.sort(sortByProperty);
+
+  function sortByProperty(A, B) {
+    if (A[settings.sortBy] < B[settings.sortBy]) {
+      return -1 * direction;
+    } else {
+      return 1 * direction;
+    }
+  }
+
+  return sortedList;
 }
 
-function sortByName(A, B) {
-  if (A.firstName < B.firstName) {
-    return -1;
-  } else {
-    return 1;
-  }
-}
+function buildList() {
+  const currentList = filterList(allStudents);
+  const sortedList = sortList(currentList);
 
-function sortByMiddleName(A, B) {
-  if (A.middleName < B.middleName) {
-    return -1;
-  } else {
-    return 1;
-  }
-}
-
-function sortByLastName(A, B) {
-  if (A.lastName < B.lastName) {
-    return -1;
-  } else {
-    return 1;
-  }
+  displayList(sortedList);
 }
 
 function displayList(students) {
@@ -166,6 +185,7 @@ function displayStudent(student) {
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
 }
+
 // --> TO DO blood generate status
 function showPopUp(student) {
   console.log("pop up");
@@ -182,7 +202,7 @@ function showPopUp(student) {
   popup.querySelector(".prefect").textContent = "prefect or not:";
 }
 
-////// CLEANING THE DATA ////////
+////// ------->>> CLEANING THE DATA <<<-------- ////////
 
 function getStudentsName(fullName) {
   const name = fullName.substring(0, fullName.indexOf(" "));
