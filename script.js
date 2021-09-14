@@ -125,8 +125,8 @@ function showPopUp(student) {
   popup.classList.remove("hidden");
 
   popup.querySelector(".student_image").src = `img/${student.imageUrl}`;
-  popup.querySelector(".name").textContent = ` ${student.firstName} ${student.middleName} `;
-  popup.querySelector(".surname").textContent = student.lastName;
+  popup.querySelector(".name").textContent = ` ${student.firstName} ${student.middleName} ${student.lastName}`;
+
   popup.querySelector(".house").textContent = student.house;
   popup.querySelector(".blood").textContent = "blood status:";
   popup.querySelector(".prefect").textContent = "prefect or not:";

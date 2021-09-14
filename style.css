@@ -2,18 +2,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Urbanist&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap");
 :root {
-  --color-1: #c7c3c6;
-  --color-2: #b4b3b7;
-  --color-3: #203665;
+  --color-1: #e5e5e5;
+  --color-2: #d6d5d5;
+  --color-5: #203665;
   --color-4: #ffc543;
-  --color-5: #4e0d12;
+  --color-3: #4e0d12;
   --color-6: #3b464d;
   --color-7: #1b1d19;
   --font-1: "myriad-pro", sans-serif;
   --font-2: "Harry Potter", sans-serif;
   --font-3: "Urbanist", sans-serif;
-  --font-4: "Sacramento", cursive;
+  --font-4: "Calligraffitti", cursive;
 }
 
 h1 {
@@ -22,7 +23,7 @@ h1 {
   font-size: 4.5vw;
   margin-bottom: 2px;
 }
-h2 {
+header h2 {
   text-align: center;
   margin: 0;
   padding: 0;
@@ -37,25 +38,28 @@ button.filter {
   border: 1.5px solid var(--color-6);
   background-color: var(--color-1);
   margin: 5px;
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
 }
+
 #columns {
   display: flex;
-  gap: 20px;
+  gap: 50px;
 }
 
 #sec1 {
-  width: 65%;
+  width: 70%;
 }
 
 #sec2 {
-  width: 35%;
+  width: 30%;
 }
 
 #nr_box {
   background-color: var(--color-2);
   margin-top: 170px;
   padding: 20px;
-  border: 2px solid var(--color-3);
+  border: 1px solid var(--color-3);
 }
 
 html {
@@ -75,34 +79,36 @@ html {
   scale: 98%;
 }
 
-/*#gryf:hover {
-  border: 2px solid #ffc500;
-  background-color: #7f0909;
-  color: #ffc500;
+#gryf:hover {
+  border: 1.5px solid var(--color-4);
+  background-color: var(--color-3);
+  color: var(--color-4);
 }
 
-#slyt {
-  border: 2px solid #aaaaaa;
-  background-color: #0d6217;
-  color: #aaaaaa;
+#slyt:hover {
+  border: 1.5px solid var(--color-2);
+  background-color: #003626;
+  color: var(--color-2);
 }
 
-#huff {
-  border: 2px solid black;
-  background-color: gold;
-  color: black;
+#huff:hover {
+  border: 1.5px solid var(--color-6);
+  background-color: var(--color-4);
+  color: var(--color-6);
 }
-#rav {
-  border: 2px solid burlywood;
-  background-color: navy;
-  color: burlywood;
-} */
+#rav:hover {
+  border: 1.5px solid var(--color-4);
+  background-color: var(--color-5);
+  color: var(--color-4);
+}
 
 /*---------TABLE ---------*/
 table {
   border-collapse: separate;
   border-spacing: 0;
+  width: 100%;
 }
+
 tr th {
   text-align: left;
   font-weight: 200;
@@ -129,11 +135,68 @@ tr th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  background-color: var(--color-2);
+  width: 45%;
+  background-color: var(--color-3);
+  border: 3px solid var(--color-2);
+  color: var(--color-2);
+  border-radius: 25px;
 }
 
 #row1 {
   display: flex;
-  gap: 3vw;
+  gap: 40px;
+  padding: 20px 20px 5px 20px;
+}
+
+.student_image {
+  max-width: 100%;
+  margin-right: 10px;
+  border-radius: 25%;
+  border: 2px solid var(--color-2);
+  margin: 5px;
+}
+#popup .name,
+.surname,
+.house {
+  text-align: left;
+  font-family: var(--font-4);
+  font-weight: 900;
+  color: var(--color-2);
+  margin: 0;
+}
+#popup .house {
+  margin: 1px;
+  font-family: var(--font-4);
+  font-weight: 900;
+  color: var(--color-4);
+}
+
+#insideflex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#row2 {
+  display: flex;
+  padding-left: 30px;
+  gap: 30px;
+}
+
+#row2 p {
+  margin: 0;
+  padding-bottom: 10px;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#row2 button {
+  border: 1.5px solid var(--color-2);
+  border-radius: 25px;
+  background-color: var(--color-3);
+  padding: 3px;
+  width: 80px;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-4);
 }
