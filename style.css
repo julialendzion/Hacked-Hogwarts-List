@@ -141,7 +141,14 @@ tr th {
   color: var(--color-2);
   border-radius: 25px;
 }
+#close:hover {
+  scale: 90%;
+  cursor: pointer;
+}
 
+#close {
+  font-size: 2vw;
+}
 #row1 {
   display: flex;
   gap: 40px;

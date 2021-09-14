@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
 let popup = document.querySelector("#popup");
+let closePop = document.querySelector("#close");
 
 const Student = {
   imageUrl: "",
@@ -29,6 +30,7 @@ function start() {
 
 function registerButtons() {
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
+  document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
 }
 
 function loadJSON() {
@@ -67,6 +69,12 @@ function selectFilter(event) {
   filterList(filter);
 }
 
+function selectSort(event) {
+  const sortBy = event.target.dataset.sort;
+  console.log(`user selected ${sortBy}`);
+  sortList(sortBy);
+}
+
 function filterList(house) {
   let filteredList = allStudents;
   if (house === "gryffindor") {
@@ -96,6 +104,44 @@ function isRavenclaw(student) {
   return student.house === "Ravenclaw"; // ---> to samo co warunek skrót!!
 }
 
+function sortList(sortBy) {
+  const list = allStudents;
+
+  if (sortBy === "name") {
+    let sortedList = list.sort(sortByName);
+  } else if (sortBy === "middleName") {
+    let sortedList = list.sort(sortByMiddleName);
+  } else if (sortBy === "lastName") {
+    let sortedList = list.sort(sortByLastName);
+  }
+
+  displayList(list);
+}
+
+function sortByName(A, B) {
+  if (A.firstName < B.firstName) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function sortByMiddleName(A, B) {
+  if (A.middleName < B.middleName) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+function sortByLastName(A, B) {
+  if (A.lastName < B.lastName) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
 function displayList(students) {
   // clear the list
   document.querySelector("#list tbody").innerHTML = "";
@@ -116,12 +162,16 @@ function displayStudent(student) {
   clone.querySelector("[data-field=nickname]").textContent = student.nickname;
   clone.querySelector("[data-field=house]").textContent = student.house;
   clone.querySelector("[data-field=first-name]").addEventListener("click", () => showPopUp(student));
+  closePop.addEventListener("click", () => (popup.style.display = "none"));
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
 }
 // --> TO DO blood generate status
 function showPopUp(student) {
   console.log("pop up");
+  closePop.style.display = "";
+  popup.style.display = "";
+
   popup.classList.remove("hidden");
 
   popup.querySelector(".student_image").src = `img/${student.imageUrl}`;
