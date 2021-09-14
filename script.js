@@ -22,7 +22,7 @@ const Student = {
 
 const settings = {
   filter: "all",
-  sortBy: "name",
+  sortBy: "firstName",
   sortDir: "asc",
 };
 
@@ -51,9 +51,9 @@ function loadJSON() {
 function prepareObjects(jsonData) {
   allStudents = jsonData.map(prepareObject);
 
-  // TODO: Add filtering here !!! This might not be the function we want to call first
+  // fixed TODO: Add filtering here !!! This might not be the function we want to call first
   console.log(allStudents);
-  displayList(allStudents);
+  buildList();
 }
 
 function prepareObject(jsonObject) {
@@ -84,6 +84,13 @@ function selectSort(event) {
   const sortBy = event.target.dataset.sort;
   const sortDir = event.target.dataset.sortDirection;
 
+  //adding styling- indicator of how it is sorted at the moment
+  //find old sort b
+  const old = document.querySelector(`[data-sort="${settings.sortBy}"]`);
+  old.classList.remove("sortby");
+  //indicate active sort
+  event.target.classList.add("sortby");
+
   //toggle the direction
   if (sortDir === "asc") {
     event.target.dataset.sortDirection = "desc";
@@ -98,6 +105,7 @@ function selectSort(event) {
 function setSort(sortBy, sortDir) {
   settings.sortBy = sortBy; // adding those parameters to the global object
   settings.sortDir = sortDir;
+
   buildList();
 }
 
@@ -180,6 +188,25 @@ function displayStudent(student) {
   clone.querySelector("[data-field=last-name]").textContent = student.lastName;
   clone.querySelector("[data-field=nickname]").textContent = student.nickname;
   clone.querySelector("[data-field=house]").textContent = student.house;
+
+  if (student.prefect === true) {
+    clone.querySelector("[data-field=prefect]").textContent = "★";
+  } else {
+    clone.querySelector("[data-field=prefect]").textContent = "☆";
+  }
+
+  clone.querySelector("[data-field=prefect]").addEventListener("click", clickStar);
+
+  function clickStar() {
+    console.log("clicking");
+    if (student.prefect === true) {
+      student.prefect = false;
+    } else {
+      student.prefect = true;
+    }
+    buildList();
+  }
+
   clone.querySelector("[data-field=first-name]").addEventListener("click", () => showPopUp(student));
   closePop.addEventListener("click", () => (popup.style.display = "none"));
   // append clone to list

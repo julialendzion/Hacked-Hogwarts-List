@@ -121,9 +121,19 @@ tr th {
   border-bottom: 2px solid var(--color-2);
 }
 
-/* #list {
-  border: 3px solid var(--color-2);
-} */
+#sorting th.sortby {
+  color: var(--color-3);
+}
+
+#sorting th.sortby[data-sort-direction="asc"]::after {
+  content: "↑";
+}
+#sorting th.sortby[data-sort-direction="desc"]::after {
+  content: "↓";
+}
+td[data-field="prefect"] {
+  text-align: center;
+}
 
 /* #list tbody tr:nth-child(2n + 1) td {
   background-color: var(--color-2);
