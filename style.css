@@ -34,7 +34,8 @@ header h2 {
   display: none;
 }
 
-button.filter {
+button.filter,
+#search {
   border: 1.5px solid var(--color-6);
   background-color: var(--color-1);
   margin: 5px;
@@ -133,6 +134,19 @@ tr th {
 }
 td[data-field="prefect"] {
   text-align: center;
+  font-size: 2vw;
+  color: var(--color-3);
+}
+
+td[data-field="prefect"]:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+td[data-field="first-name"]:hover {
+  cursor: pointer;
+  color: var(--color-3);
+  font-weight: 600;
 }
 
 /* #list tbody tr:nth-child(2n + 1) td {
@@ -152,6 +166,7 @@ td[data-field="prefect"] {
   color: var(--color-2);
   border-radius: 25px;
 }
+
 #close:hover {
   scale: 90%;
   cursor: pointer;
@@ -211,7 +226,7 @@ td[data-field="prefect"] {
 #row2 button {
   border: 1.5px solid var(--color-2);
   border-radius: 25px;
-  background-color: var(--color-3);
+  background-color: transparent;
   padding: 3px;
   width: 80px;
   font-weight: 200;

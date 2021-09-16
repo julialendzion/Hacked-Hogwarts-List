@@ -24,7 +24,11 @@
             <button id="" class="filter" data-action="filter" data-filter="resposibilities">Students w. resposibilities</button>
             <button id="" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
             <button id="" class="filter" data-action="filter" data-filter="*">All students</button>
+            <span>
+              <input type="search" placeholder=" ⌕ search student..." id="search" name="search" />
+            </span>
           </p>
+
           <table id="list" class="list_categories">
             <thead>
               <tr id="sorting">
@@ -63,20 +67,20 @@
       <div id="popup" class="hidden">
         <div id="row1">
           <div>
-            <img src="" alt="" class="student_image" />
+            <img src="" alt="" id="stud_img" class="student_image" />
           </div>
           <div id="insideflex">
           <div >
             <h2 class="name"></h2>
             <h2 class="surname"></h2>
-            <h3 class="house"></h3>
+            <h3 id="house" class="house"></h3>
           </div>
           <div id="close">X</div>
         </div>
         </div>
         <div id="row2">
           <div>
-          <button>EXPELL</button>
+          <button id="expell">EXPELL</button>
         </div>
           <div>
           <p class="blood"></p>

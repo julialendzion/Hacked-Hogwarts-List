@@ -32,11 +32,16 @@ function start() {
   // TODO: Add event-listeners to filter and sort buttons --> function registerButtons
   registerButtons();
   loadJSON();
+  registerSearch();
 }
 
 function registerButtons() {
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
   document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
+}
+
+function registerSearch() {
+  document.querySelector("#search").addEventListener("input", searchStudent);
 }
 
 function loadJSON() {
@@ -67,6 +72,26 @@ function prepareObject(jsonObject) {
   student.imageUrl = getImage(student.lastName, student.firstName);
   console.log(student);
   return student;
+}
+
+function searchStudent() {
+  let search = document.querySelector("#search").value.toLowerCase();
+  let searchResult = allStudents.filter(filterSearch);
+
+  function filterSearch(student) {
+    //Searching firstName and lastLame
+    if (student.firstName.toString().toLowerCase().includes(search) || student.lastName.toString().toLowerCase().includes(search)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  if (search == " ") {
+    displayList(allStudents);
+  }
+
+  displayList(searchResult);
 }
 
 function selectFilter(event) {
@@ -226,21 +251,70 @@ function showPopUp(student) {
 
   popup.querySelector(".house").textContent = student.house;
   popup.querySelector(".blood").textContent = "blood status:";
-  popup.querySelector(".prefect").textContent = "prefect or not:";
+
+  if (student.prefect === true) {
+    popup.querySelector(".prefect").textContent = `Prefect:  ★  is prefect`;
+  } else {
+    popup.querySelector(".prefect").textContent = `Prefect:  ☆  not prefect`;
+  }
+
+  // set the pop up color according to the houses
+
+  if (student.house === "Slytherin") {
+    document.querySelector("#popup").style.color = "#d6d5d5";
+    document.querySelector("#popup").style.backgroundColor = "#003626";
+    document.querySelector("#popup").style.border = "3px solid #d6d5d5 ";
+    document.querySelector("#stud_img").style.border = "1.5px solid #d6d5d5 ";
+    document.querySelector("#house").style.color = "#586F68";
+    document.querySelector("#expell").style.color = "#586F68";
+    document.querySelector(".name").style.color = "#d6d5d5";
+  } else if (student.house === "Hufflepuff") {
+    document.querySelector("#popup").style.color = "#1b1d19";
+    document.querySelector("#popup").style.backgroundColor = "#ffc543";
+    document.querySelector("#popup").style.border = "3px solid #1b1d19";
+    document.querySelector("#stud_img").style.border = "1.5px solid #1b1d19";
+    document.querySelector("#house").style.color = "#B47C00";
+    document.querySelector("#expell").style.color = "#B47C00";
+    document.querySelector(".name").style.color = "#1b1d19";
+  } else if (student.house === "Gryffindor") {
+    document.querySelector("#popup").style.color = "#d6d5d5";
+    document.querySelector("#popup").style.backgroundColor = "#4e0d12";
+    document.querySelector("#popup").style.border = "3px solid #ffc543";
+    document.querySelector("#stud_img").style.border = "1.5px solid #ffc543";
+    document.querySelector("#house").style.color = "#ffc543";
+    document.querySelector("#expell").style.color = "#ffc543";
+    document.querySelector(".name").style.color = "#d6d5d5";
+  } else if (student.house === "Ravenclaw") {
+    document.querySelector("#popup").style.color = "#d6d5d5";
+    document.querySelector("#popup").style.backgroundColor = "#203665";
+    document.querySelector("#popup").style.border = "3px solid  #ffc543";
+    document.querySelector("#stud_img").style.border = "1.5px solid #ffc543";
+    document.querySelector("#house").style.color = "#ffc543";
+    document.querySelector("#expell").style.color = "#ffc543";
+    document.querySelector(".name").style.color = "#d6d5d5";
+  }
 }
 
 ////// ------->>> CLEANING THE DATA <<<-------- ////////
 
 function getStudentsName(fullName) {
-  const name = fullName.substring(0, fullName.indexOf(" "));
-  const firstName = clean(name);
-  return firstName;
+  if (fullName.includes(" ") == true) {
+    const first = fullName.slice(0, fullName.indexOf(" "));
+    const firstName = clean(first);
+    return firstName;
+  } else {
+    const firstName = clean(fullName);
+    return firstName;
+  }
 }
 
 function getStudentsLastName(fullName) {
-  const last = fullName.slice(fullName.lastIndexOf(" ") + 1);
-  const lastName = clean(last);
-  return lastName;
+  if (fullName.includes(" ") == true) {
+    const last = fullName.slice(fullName.lastIndexOf(" ") + 1);
+    const lastName = clean(last);
+    return lastName;
+  }
+  return undefined;
 }
 
 function getStudentsMiddleName(fullName) {
