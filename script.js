@@ -3,6 +3,8 @@
 window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
+let allBloodStatus = [];
+
 let popup = document.querySelector("#popup");
 let closePop = document.querySelector("#close");
 
@@ -44,21 +46,41 @@ function registerSearch() {
   document.querySelector("#search").addEventListener("input", searchStudent);
 }
 
-function loadJSON() {
-  fetch(`https://petlatkea.dk/2021/hogwarts/students.json`)
-    .then((response) => response.json())
-    .then((jsonData) => {
-      // when loaded, prepare objects
-      prepareObjects(jsonData);
-    });
+async function loadJSON() {
+  console.log("loadJS");
+  const response = await fetch("https://petlatkea.dk/2021/hogwarts/students.json");
+  const jsonData = await response.json();
+  const responseBlood = await fetch("https://petlatkea.dk/2021/hogwarts/families.json");
+  const jsonDataBlood = await responseBlood.json();
+
+  // when loaded, prepare data objects
+  prepareObjects(jsonData, jsonDataBlood);
 }
 
-function prepareObjects(jsonData) {
+function prepareObjects(jsonData, jsonDataBlood) {
   allStudents = jsonData.map(prepareObject);
+
+  //blood status
+  allBloodStatus = jsonDataBlood;
+  setBloodStatus(jsonDataBlood);
 
   // fixed TODO: Add filtering here !!! This might not be the function we want to call first
   console.log(allStudents);
   buildList();
+}
+
+function setBloodStatus(jsonDataBlood) {
+  console.log("defining bloodstatus for students");
+  allStudents.forEach((student) => {
+    if (jsonDataBlood.half.includes(student.lastName)) {
+      student.bloodstatus = "half-blood";
+    } else if (jsonDataBlood.pure.includes(student.lastName)) {
+      student.bloodstatus = "pure-blood";
+    } else {
+      student.bloodstatus = "muggleborn";
+    }
+  });
+  return student;
 }
 
 function prepareObject(jsonObject) {
@@ -250,7 +272,7 @@ function showPopUp(student) {
   popup.querySelector(".name").textContent = ` ${student.firstName} ${student.middleName} ${student.lastName}`;
 
   popup.querySelector(".house").textContent = student.house;
-  popup.querySelector(".blood").textContent = "blood status:";
+  popup.querySelector(".blood").textContent = `Blood status: ${student.bloodstatus}`;
 
   if (student.prefect === true) {
     popup.querySelector(".prefect").textContent = `Prefect:  ★  is prefect`;
@@ -309,12 +331,9 @@ function getStudentsName(fullName) {
 }
 
 function getStudentsLastName(fullName) {
-  if (fullName.includes(" ") == true) {
-    const last = fullName.slice(fullName.lastIndexOf(" ") + 1);
-    const lastName = clean(last);
-    return lastName;
-  }
-  return undefined;
+  const last = fullName.slice(fullName.lastIndexOf(" ") + 1);
+  const lastName = clean(last);
+  return lastName;
 }
 
 function getStudentsMiddleName(fullName) {
