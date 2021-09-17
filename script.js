@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
 let allBloodStatus = [];
+let expelledStudents = [];
 
 let popup = document.querySelector("#popup");
 let closePop = document.querySelector("#close");
@@ -35,11 +36,16 @@ function start() {
   registerButtons();
   loadJSON();
   registerSearch();
+  registerExpelledStudents();
 }
 
 function registerButtons() {
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectFilter));
   document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
+}
+
+function registerExpelledStudents() {
+  document.querySelector("[data-filter='expelledstudents']").addEventListener("click", displayExpelledStudent);
 }
 
 function registerSearch() {
@@ -187,6 +193,11 @@ function isRavenclaw(student) {
 }
 /// --- END OF FILTERS ------
 
+function displayExpelledStudent() {
+  console.log("Show expelled students");
+  displayList(expelledStudents);
+}
+
 function sortList(sortedList) {
   let direction = 1;
 
@@ -280,6 +291,24 @@ function showPopUp(student) {
     popup.querySelector(".prefect").textContent = `Prefect:  ☆  not prefect`;
   }
 
+  //expell
+  if (student.expel === true) {
+    popup.querySelector("#expell").style.backgroundColor = "black";
+  } else {
+    popup.querySelector("#expell").style.backgroundColor = "transparent";
+    // Add Expelled in popup
+    document.querySelector("#expell").addEventListener("click", clickExpel);
+  }
+
+  function clickExpel() {
+    student.expel = true;
+
+    popup.querySelector("#expell").style.backgroundColor = "black";
+    document.querySelector("#expell").removeEventListener("click", clickExpel);
+    expelTheStudent(student);
+
+    buildList();
+  }
   // set the pop up color according to the houses
 
   if (student.house === "Slytherin") {
@@ -315,6 +344,12 @@ function showPopUp(student) {
     document.querySelector("#expell").style.color = "#ffc543";
     document.querySelector(".name").style.color = "#d6d5d5";
   }
+}
+
+function expelTheStudent(student) {
+  console.log("Expel the student");
+  allStudents.splice(allStudents.indexOf(student), 1);
+  expelledStudents.push(student);
 }
 
 ////// ------->>> CLEANING THE DATA <<<-------- ////////
