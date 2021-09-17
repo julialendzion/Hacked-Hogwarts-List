@@ -103,6 +103,34 @@ html {
   color: var(--color-4);
 }
 
+/*---------KLASYYYYYYY ---------
+Jak zrobić zeby przycisk byl podswiertlony jak klikniesz 
+
+*/
+
+.gryf {
+  border: 1.5px solid var(--color-4);
+  background-color: black;
+  color: var(--color-4);
+}
+
+.slyt {
+  border: 1.5px solid var(--color-2);
+  background-color: #003626;
+  color: var(--color-2);
+}
+
+.huff {
+  border: 1.5px solid var(--color-6);
+  background-color: var(--color-4);
+  color: var(--color-6);
+}
+.rav {
+  border: 1.5px solid var(--color-4);
+  background-color: var(--color-5);
+  color: var(--color-4);
+}
+
 /*---------TABLE ---------*/
 table {
   border-collapse: separate;

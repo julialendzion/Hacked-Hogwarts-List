@@ -167,8 +167,15 @@ function filterList(filteredList) {
 
   if (settings.filterBy === "gryffindor") {
     filteredList = allStudents.filter(isGryffindor);
+
+    // ---> TO DO sprawdzic czemu nie dziala dodawanie tej klasy
+
+    document.querySelector("button#gryf").classList.add("gryf");
   } else if (settings.filterBy === "slytherin") {
     filteredList = allStudents.filter(isSlytherin);
+    //TU TEZ!!!
+    document.querySelector("#slyt").classList.add("slyt");
+    document.querySelector("#gryf").classList.remove("gryf");
   } else if (settings.filterBy === "hufflepuff") {
     filteredList = allStudents.filter(isHufflepuff);
   } else if (settings.filterBy === "ravenclaw") {
@@ -294,8 +301,10 @@ function showPopUp(student) {
   //expell
   if (student.expel === true) {
     popup.querySelector("#expell").style.backgroundColor = "black";
+    popup.querySelector("#expell").style.cursor = "";
   } else {
     popup.querySelector("#expell").style.backgroundColor = "transparent";
+    popup.querySelector("#expell").style.cursor = "pointer";
     // Add Expelled in popup
     document.querySelector("#expell").addEventListener("click", clickExpel);
   }
@@ -304,6 +313,7 @@ function showPopUp(student) {
     student.expel = true;
 
     popup.querySelector("#expell").style.backgroundColor = "black";
+    popup.querySelector("#expell").style.cursor = "";
     document.querySelector("#expell").removeEventListener("click", clickExpel);
     expelTheStudent(student);
 
