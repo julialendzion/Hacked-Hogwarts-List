@@ -241,6 +241,7 @@ function displayList(students) {
   // build a new list
   students.forEach(displayStudent);
   console.log(students);
+  displayNumbers(students);
 }
 
 function displayStudent(student) {
@@ -278,7 +279,7 @@ function displayStudent(student) {
   document.querySelector("#list tbody").appendChild(clone);
 }
 
-// --> TO DO blood generate status
+// --> POP UP
 function showPopUp(student) {
   console.log("pop up");
   closePop.style.display = "";
@@ -302,9 +303,12 @@ function showPopUp(student) {
   if (student.expel === true) {
     popup.querySelector("#expell").style.backgroundColor = "black";
     popup.querySelector("#expell").style.cursor = "";
+    popup.querySelector("#expell").textContent = "EXPELLED";
   } else {
     popup.querySelector("#expell").style.backgroundColor = "transparent";
     popup.querySelector("#expell").style.cursor = "pointer";
+    popup.querySelector("#expell").textContent = "EXPELL";
+
     // Add Expelled in popup
     document.querySelector("#expell").addEventListener("click", clickExpel);
   }
@@ -314,6 +318,7 @@ function showPopUp(student) {
 
     popup.querySelector("#expell").style.backgroundColor = "black";
     popup.querySelector("#expell").style.cursor = "";
+    popup.querySelector("#expell").textContent = "EXPELLED";
     document.querySelector("#expell").removeEventListener("click", clickExpel);
     expelTheStudent(student);
 
@@ -360,6 +365,52 @@ function expelTheStudent(student) {
   console.log("Expel the student");
   allStudents.splice(allStudents.indexOf(student), 1);
   expelledStudents.push(student);
+}
+
+///
+function countGryffindors(student) {
+  if (student.house === "Gryffindor") {
+    return true;
+  } else {
+    return false;
+  }
+}
+function countHufflepuffs(student) {
+  if (student.house === "Hufflepuff") {
+    return true;
+  } else {
+    return false;
+  }
+}
+function countRavenclaws(student) {
+  if (student.house === "Ravenclaw") {
+    return true;
+  } else {
+    return false;
+  }
+}
+function countSlytherins(student) {
+  if (student.house === "Slytherin") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+/// NUMBERS FOR HOUSES DON'T WORK WHEN FILTERING
+
+function displayNumbers(students) {
+  // displayed students
+  document.querySelector("#nr_displayed").textContent = `Displayed students : ${students.length}`;
+
+  // avtive students
+  document.querySelector("#nr_all").textContent = `Active students : ${allStudents.length}`;
+  document.querySelector("#nr_expelled").textContent = `Expelled students : ${expelledStudents.length}`;
+  document.querySelector("#nr_gryf").textContent = `Gryffindor: ${students.filter(countGryffindors).length}`;
+  document.querySelector("#nr_huff").textContent = `Hufflepuff: ${students.filter(countHufflepuffs).length}`;
+  document.querySelector("#nr_rav").textContent = `Ravenclaw: ${students.filter(countRavenclaws).length}`;
+  document.querySelector("#nr_slyt").textContent = `Slytherin: ${students.filter(countSlytherins).length}`;
+  // expelled students
 }
 
 ////// ------->>> CLEANING THE DATA <<<-------- ////////
