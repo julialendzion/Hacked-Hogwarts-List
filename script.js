@@ -406,10 +406,10 @@ function displayNumbers(students) {
   // avtive students
   document.querySelector("#nr_all").textContent = `Active students : ${allStudents.length}`;
   document.querySelector("#nr_expelled").textContent = `Expelled students : ${expelledStudents.length}`;
-  document.querySelector("#nr_gryf").textContent = `Gryffindor: ${students.filter(countGryffindors).length}`;
-  document.querySelector("#nr_huff").textContent = `Hufflepuff: ${students.filter(countHufflepuffs).length}`;
-  document.querySelector("#nr_rav").textContent = `Ravenclaw: ${students.filter(countRavenclaws).length}`;
-  document.querySelector("#nr_slyt").textContent = `Slytherin: ${students.filter(countSlytherins).length}`;
+  document.querySelector("#nr_gryf").textContent = `Gryffindor: ${allStudents.filter(countGryffindors).length}`;
+  document.querySelector("#nr_huff").textContent = `Hufflepuff: ${allStudents.filter(countHufflepuffs).length}`;
+  document.querySelector("#nr_rav").textContent = `Ravenclaw: ${allStudents.filter(countRavenclaws).length}`;
+  document.querySelector("#nr_slyt").textContent = `Slytherin: ${allStudents.filter(countSlytherins).length}`;
   // expelled students
 }
 
