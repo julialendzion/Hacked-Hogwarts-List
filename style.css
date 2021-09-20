@@ -34,6 +34,10 @@ header h2 {
   display: none;
 }
 
+.hide {
+  visibility: hidden;
+}
+
 button.filter,
 #search {
   border: 1.5px solid var(--color-6);
@@ -73,11 +77,18 @@ html {
 [data-action] {
   cursor: pointer;
 }
+
 .filter {
   padding: 5px;
 }
 .filter:hover {
   scale: 98%;
+}
+
+#gryf:focus {
+  border: 1.5px solid var(--color-4);
+  background-color: var(--color-3);
+  color: var(--color-4);
 }
 
 #gryf:hover {
@@ -86,10 +97,22 @@ html {
   color: var(--color-4);
 }
 
+#slyt:focus {
+  border: 1.5px solid var(--color-2);
+  background-color: #003626;
+  color: var(--color-2);
+}
+
 #slyt:hover {
   border: 1.5px solid var(--color-2);
   background-color: #003626;
   color: var(--color-2);
+}
+
+#huff:focus {
+  border: 1.5px solid var(--color-6);
+  background-color: var(--color-4);
+  color: var(--color-6);
 }
 
 #huff:hover {
@@ -97,10 +120,23 @@ html {
   background-color: var(--color-4);
   color: var(--color-6);
 }
+
+#rav:focus {
+  border: 1.5px solid var(--color-4);
+  background-color: var(--color-5);
+  color: var(--color-4);
+}
 #rav:hover {
   border: 1.5px solid var(--color-4);
   background-color: var(--color-5);
   color: var(--color-4);
+}
+
+#expelled_filter:focus {
+  background-color: var(--color-2);
+}
+#all_filter:focus {
+  background-color: var(--color-2);
 }
 
 /*---------KLASYYYYYYY ---------
@@ -108,30 +144,8 @@ Jak zrobić zeby przycisk byl podswiertlony jak klikniesz
 
 */
 
-.gryf {
-  border: 1.5px solid var(--color-4);
-  background-color: black;
-  color: var(--color-4);
-}
-
-.slyt {
-  border: 1.5px solid var(--color-2);
-  background-color: #003626;
-  color: var(--color-2);
-}
-
-.huff {
-  border: 1.5px solid var(--color-6);
-  background-color: var(--color-4);
-  color: var(--color-6);
-}
-.rav {
-  border: 1.5px solid var(--color-4);
-  background-color: var(--color-5);
-  color: var(--color-4);
-}
-
 /*---------TABLE ---------*/
+
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -203,10 +217,20 @@ td[data-field="first-name"]:hover {
 #close {
   font-size: 2vw;
 }
+
 #row1 {
   display: flex;
   gap: 40px;
   padding: 20px 20px 5px 20px;
+}
+
+#house_flex {
+  display: flex;
+  gap: 10px;
+}
+
+.crest_img {
+  max-width: 12%;
 }
 
 .student_image {
@@ -260,4 +284,52 @@ td[data-field="first-name"]:hover {
   font-weight: 200;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--color-4);
+}
+
+/* -------------WARNING STYLING---------------- */
+
+.prefect_warning {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  background-color: var(--color-3);
+  border: 3px solid var(--color-2);
+  color: var(--color-2);
+  border-radius: 25px;
+}
+.prefect_warning p {
+  text-align: center;
+}
+.prefect_warning h2 {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: -15px;
+}
+.prefect_warning #removeother {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  border: 1.5px solid var(--color-6);
+  background-color: var(--color-1);
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+}
+
+.prefect_warning .close_warning {
+  display: block;
+  margin-right: 10px;
+  margin-left: auto;
+  border: 0;
+  background-color: var(--color-3);
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+  color: var(--color-2);
+  font-size: 2vw;
+}
+.prefect_warning .close_warning:hover {
+  scale: 90%;
+  cursor: pointer;
 }

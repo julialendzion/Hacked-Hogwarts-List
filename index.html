@@ -21,9 +21,8 @@
             <button id="slyt" class="filter" data-action="filter" data-filter="slytherin">Students of Slytherin</button>
             <button id="huff" class="filter" data-action="filter" data-filter="hufflepuff">Students of Hufflepuff</button>
             <button id="rav" class="filter" data-action="filter" data-filter="ravenclaw">Students of Ravenclaw</button>
-            <button id="" class="filter" data-action="filter" data-filter="resposibilities">Students w. resposibilities</button>
-            <button id="" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
-            <button id="" class="filter" data-action="filter" data-filter="*">All students</button>
+            <button id="expelled_filter" class="filter" data-action="filter" data-filter="expelledstudents">Expelled Students</button>
+            <button id="all_filter" class="filter" data-action="filter" data-filter="*">All students</button>
             <span>
               <input type="search" placeholder=" ⌕ search student..." id="search" name="search" />
             </span>
@@ -74,12 +73,16 @@
         <div id="row1">
           <div>
             <img src="" alt="" id="stud_img" class="student_image" />
+
           </div>
           <div id="insideflex">
           <div >
             <h2 class="name"></h2>
             <h2 class="surname"></h2>
-            <h3 id="house" class="house"></h3>
+            <div id="house_flex">
+          <img src="" alt="" id="house_crest" class="crest_img"> 
+            <h3 id="house" class="house"> </h3>
+          </div>
           </div>
           <div id="close">X</div>
         </div>
@@ -98,6 +101,19 @@
         <!--add hide after styleing complete -->
       </div>
       <!-- POP UP END -->
+
+        <!-- remove other -->
+    <div id="remove_other" class="prefect_warning hide">
+      <div id="pref_info">
+        <button class="close_warning">X</button>
+        <h2 class="warning">Warning!</h2>
+        <p>
+          There can only be one prefect each gender from each house.<br />
+          Do you want to remove the other Prefect?
+        </p>
+        <button id="removeother">Remove <span data-field="otherprefect">other</span></button>
+      </div>
+    </div>
     </main>
     <footer></footer>
   </body>
