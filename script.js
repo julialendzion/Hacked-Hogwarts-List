@@ -331,21 +331,30 @@ function showPopUp(student) {
     popup.querySelector("#expell").style.backgroundColor = "black";
     popup.querySelector("#expell").style.cursor = "";
     popup.querySelector("#expell").textContent = "EXPELLED";
+    popup.querySelector(".expel_stat").textContent = `Student status: expelled`;
     document.querySelector("#expell").removeEventListener("click", clickExpel);
     expelTheStudent(student);
 
     buildList();
   }
+
+  if (student.expel === true) {
+    popup.querySelector(".expel_stat").textContent = `Student status: expelled`;
+  } else {
+    popup.querySelector(".expel_stat").textContent = `Student status: active`;
+  }
+
   // set the pop up color according to the houses
 
   if (student.house === "Slytherin") {
     document.querySelector("#popup").style.color = "#d6d5d5";
     document.querySelector("#popup").style.backgroundColor = "#003626";
-    document.querySelector("#popup").style.border = "3px solid #d6d5d5 ";
+    document.querySelector("#popup").style.border = "3px solid #586F68 ";
     document.querySelector("#stud_img").style.border = "1.5px solid #d6d5d5 ";
     document.querySelector("#house").style.color = "#586F68";
     document.querySelector("#expell").style.color = "#586F68";
     document.querySelector(".name").style.color = "#d6d5d5";
+    document.querySelector("#squad").style.color = "#586F68";
   } else if (student.house === "Hufflepuff") {
     document.querySelector("#popup").style.color = "#1b1d19";
     document.querySelector("#popup").style.backgroundColor = "#ffc543";
@@ -354,6 +363,7 @@ function showPopUp(student) {
     document.querySelector("#house").style.color = "#B47C00";
     document.querySelector("#expell").style.color = "#B47C00";
     document.querySelector(".name").style.color = "#1b1d19";
+    document.querySelector("#squad").style.color = "#B47C00";
   } else if (student.house === "Gryffindor") {
     document.querySelector("#popup").style.color = "#d6d5d5";
     document.querySelector("#popup").style.backgroundColor = "#4e0d12";
@@ -362,6 +372,7 @@ function showPopUp(student) {
     document.querySelector("#house").style.color = "#ffc543";
     document.querySelector("#expell").style.color = "#ffc543";
     document.querySelector(".name").style.color = "#d6d5d5";
+    document.querySelector("#squad").style.color = "#ffc543";
   } else if (student.house === "Ravenclaw") {
     document.querySelector("#popup").style.color = "#d6d5d5";
     document.querySelector("#popup").style.backgroundColor = "#203665";
@@ -369,32 +380,37 @@ function showPopUp(student) {
     document.querySelector("#stud_img").style.border = "1.5px solid #ffc543";
     document.querySelector("#house").style.color = "#ffc543";
     document.querySelector("#expell").style.color = "#ffc543";
+    document.querySelector("#squad").style.color = "#ffc543";
     document.querySelector(".name").style.color = "#d6d5d5";
   }
 
   /// ADD TO SQUAD IN THE POP UP
-
   if (student.squad === true) {
-    popup.querySelector("#squad").style.backgroundColor = "black";
-    popup.querySelector("#squad").style.cursor = "";
-    popup.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
-    popup.querySelector("#squad").addEventListener("click", clickSquad);
+    popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
+    document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
+    document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
   } else {
-    popup.querySelector("#squad").style.backgroundColor = "transparent";
-    popup.querySelector("#squad").style.cursor = "pointer";
-    popup.querySelector("#squad").textContent = "ADD TO SQUAD";
-    popup.querySelector("#squad").addEventListener("click", clickSquad);
+    popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
+    document.querySelector("#squad").textContent = "ADD TO SQUAD";
+    document.querySelector("#squad").addEventListener("click", clickAddSquad);
   }
 
-  function clickSquad() {
+  function clickAddSquad() {
+    document.querySelector("#squad").removeEventListener("click", clickAddSquad);
     if (student.squad === true) {
       student.squad = false;
-      popup.querySelector("#squad").textContent = "ADD TO SQUAD";
-      popup.querySelector("#squad").addEventListener("click", clickSquad);
-      popup.querySelector(".squad_stat").textContent = `inquisitorial squad : Not a member`;
     } else {
       tryToBeINSquad(student);
     }
+    buildList();
+  }
+
+  function clickRemoveSquad() {
+    document.querySelector("#squad").removeEventListener("click", clickRemoveSquad);
+    student.squad = false;
+    document.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
+    document.querySelector("#squad").textContent = "ADD TO SQUAD";
+    document.querySelector("#squad").addEventListener("click", clickAddSquad);
     buildList();
   }
 
@@ -411,21 +427,21 @@ function showPopUp(student) {
 
   function addToSquad(selectedStudent) {
     selectedStudent.squad = true;
-    popup.querySelector(".squad_stat").textContent = `inquisitorial squad : Is member`;
-    popup.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
-    popup.querySelector("#squad").addEventListener("click", clickSquad);
+    document.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
+    document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
+    document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
   }
 
   function tryAgain() {
     document.querySelector("#can_not_add").classList.remove("hide");
     document.querySelector("#can_not_add .close_warning").addEventListener("click", closeDialog);
-    document.querySelector("#can_not_add #removeother").addEventListener("click", closeDialog);
+    document.querySelector("#can_not_add .removeother").addEventListener("click", closeDialog);
   }
   //if ignore - do nothing
   function closeDialog() {
     document.querySelector("#can_not_add").classList.add("hide");
     document.querySelector("#can_not_add .close_warning").removeEventListener("click", closeDialog);
-    document.querySelector("#can_not_add #removeother").removeEventListener("click", closeDialog);
+    document.querySelector("#can_not_add .removeother").removeEventListener("click", closeDialog);
   }
 }
 
@@ -457,7 +473,7 @@ function tryToMakeAPrefect(selectedStudent) {
     // ask the user to ignore or remove the other
     document.querySelector("#remove_other").classList.remove("hide");
     document.querySelector("#remove_other .close_warning").addEventListener("click", closeDialog);
-    document.querySelector("#remove_other #removeother").addEventListener("click", clickRemoveOther);
+    document.querySelector("#remove_other .removeother").addEventListener("click", clickRemoveOther);
 
     document.querySelector("#remove_other [data-field=otherprefect]").textContent = other.firstName;
 
@@ -465,7 +481,7 @@ function tryToMakeAPrefect(selectedStudent) {
     function closeDialog() {
       document.querySelector("#remove_other").classList.add("hide");
       document.querySelector("#remove_other .close_warning").removeEventListener("click", closeDialog);
-      document.querySelector("#remove_other #removeother").removeEventListener("click", clickRemoveOther);
+      document.querySelector("#remove_other .removeother").removeEventListener("click", clickRemoveOther);
     }
 
     //if remove other:

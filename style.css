@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap");
 :root {
   --color-1: #e5e5e5;
-  --color-2: #d6d5d5;
+  --color-2: #cdcfd6;
   --color-5: #203665;
   --color-4: #ffc543;
   --color-3: #4e0d12;
@@ -62,9 +62,8 @@ button.filter,
 
 #nr_box {
   background-color: var(--color-2);
-  margin-top: 170px;
+  margin-top: 110px;
   padding: 20px;
-  border: 1px solid var(--color-3);
 }
 
 html {
@@ -156,6 +155,7 @@ tr th {
   text-align: left;
   font-weight: 200;
   padding: 20px;
+  background-color: #cdcfd676;
 }
 
 #list tbody tr td {
@@ -220,7 +220,7 @@ td[data-field="first-name"]:hover {
 
 #row1 {
   display: flex;
-  gap: 40px;
+  gap: 80px;
   padding: 20px 20px 5px 20px;
 }
 
@@ -230,11 +230,11 @@ td[data-field="first-name"]:hover {
 }
 
 .crest_img {
-  max-width: 12%;
+  max-width: 13%;
 }
 
 .student_image {
-  max-width: 100%;
+  max-width: 145%;
   margin-right: 10px;
   border-radius: 25%;
   border: 2px solid var(--color-2);
@@ -249,11 +249,17 @@ td[data-field="first-name"]:hover {
   color: var(--color-2);
   margin: 0;
 }
+#popup .name,
+.surname {
+  font-size: 2em;
+}
+
 #popup .house {
   margin: 1px;
   font-family: var(--font-4);
   font-weight: 900;
   color: var(--color-4);
+  font-size: 1.8em;
 }
 
 #insideflex {
@@ -265,11 +271,11 @@ td[data-field="first-name"]:hover {
 #row2 {
   display: flex;
   padding-left: 30px;
-  gap: 30px;
+  gap: 40px;
 }
 
 #row2 p {
-  margin: 0;
+  margin: -2px;
   padding-bottom: 10px;
   font-weight: 200;
   font-family: Arial, Helvetica, sans-serif;
@@ -277,10 +283,9 @@ td[data-field="first-name"]:hover {
 
 #row2 button {
   border: 1.5px solid var(--color-2);
-
   background-color: transparent;
   padding: 3px;
-  width: 80px;
+  width: 110px;
   font-weight: 200;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--color-4);
@@ -295,9 +300,26 @@ td[data-field="first-name"]:hover {
   border-radius: 15px;
   margin-top: 10px;
 }
+
+#popup_text {
+  margin-bottom: 20px;
+}
 /* -------------WARNING STYLING---------------- */
 
 .prefect_warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#pref_info {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -308,6 +330,7 @@ td[data-field="first-name"]:hover {
   color: var(--color-2);
   border-radius: 25px;
 }
+
 .prefect_warning p {
   text-align: center;
 }
@@ -316,7 +339,7 @@ td[data-field="first-name"]:hover {
   margin-bottom: 0;
   margin-top: -15px;
 }
-.prefect_warning #removeother {
+.removeother {
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -325,6 +348,11 @@ td[data-field="first-name"]:hover {
   background-color: var(--color-1);
   border-radius: 25px;
   padding: 5px 10px 5px 10px;
+}
+
+.removeother:hover {
+  scale: 90%;
+  cursor: pointer;
 }
 
 .prefect_warning .close_warning {
@@ -343,34 +371,21 @@ td[data-field="first-name"]:hover {
   cursor: pointer;
 }
 
-/* TRY AGAIN */
+/* ----- SQUAD TRY AGAIN ----- */
 
-.close_warning {
-  background-color: transparent;
-  border: 1px solid #ffe180;
-  position: absolute;
-  border-radius: 50%;
-  right: 0.3em;
-  top: 0.3em;
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-}
-.close_warning:hover {
-  background-color: #181818;
-}
 .dialog {
-  border-radius: 12px;
-  padding: 2em;
-  background-color: rgb(46, 46, 46);
-  position: relative;
-}
-.warning {
-  margin-bottom: 2rem;
-  font-size: 3rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  background-color: var(--color-7);
+  border: 3px solid var(--color-2);
+  color: var(--color-2);
+  border-radius: 25px;
 }
 
-.modal {
+.squad_warning {
   position: fixed;
   top: 0;
   left: 0;
@@ -381,4 +396,37 @@ td[data-field="first-name"]:hover {
   justify-content: center;
   align-items: center;
   z-index: 10;
+}
+
+.squad_warning p {
+  text-align: center;
+}
+.squad_warning h2 {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: -15px;
+}
+
+.squad_warning .close_warning {
+  display: block;
+  margin-right: 10px;
+  margin-left: auto;
+  border: 0;
+  background-color: var(--color-7);
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+  color: var(--color-2);
+  font-size: 2vw;
+}
+
+.squad_warning .close_warning:hover {
+  scale: 90%;
+  cursor: pointer;
+}
+
+#squad:hover {
+  cursor: pointer;
+}
+#squad {
+  font-size: 0.75em;
 }
