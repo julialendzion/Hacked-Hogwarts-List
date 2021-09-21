@@ -289,6 +289,7 @@ function displayStudent(student) {
   document.querySelector("#list tbody").appendChild(clone);
 }
 
+//
 // --> POP UP
 function showPopUp(student) {
   console.log("pop up");
@@ -370,7 +371,65 @@ function showPopUp(student) {
     document.querySelector("#expell").style.color = "#ffc543";
     document.querySelector(".name").style.color = "#d6d5d5";
   }
+
+  /// ADD TO SQUAD IN THE POP UP
+
+  if (student.squad === true) {
+    popup.querySelector("#squad").style.backgroundColor = "black";
+    popup.querySelector("#squad").style.cursor = "";
+    popup.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
+    popup.querySelector("#squad").addEventListener("click", clickSquad);
+  } else {
+    popup.querySelector("#squad").style.backgroundColor = "transparent";
+    popup.querySelector("#squad").style.cursor = "pointer";
+    popup.querySelector("#squad").textContent = "ADD TO SQUAD";
+    popup.querySelector("#squad").addEventListener("click", clickSquad);
+  }
+
+  function clickSquad() {
+    if (student.squad === true) {
+      student.squad = false;
+      popup.querySelector("#squad").textContent = "ADD TO SQUAD";
+      popup.querySelector("#squad").addEventListener("click", clickSquad);
+      popup.querySelector(".squad_stat").textContent = `inquisitorial squad : Not a member`;
+    } else {
+      tryToBeINSquad(student);
+    }
+    buildList();
+  }
+
+  function tryToBeINSquad(selectedStudent) {
+    if (selectedStudent.house === "Slytherin") {
+      addToSquad(selectedStudent);
+    } else if (selectedStudent.bloodstatus === "pure-blood") {
+      addToSquad(selectedStudent);
+    } else {
+      selectedStudent.squad = false;
+      tryAgain();
+    }
+  }
+
+  function addToSquad(selectedStudent) {
+    selectedStudent.squad = true;
+    popup.querySelector(".squad_stat").textContent = `inquisitorial squad : Is member`;
+    popup.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
+    popup.querySelector("#squad").addEventListener("click", clickSquad);
+  }
+
+  function tryAgain() {
+    document.querySelector("#can_not_add").classList.remove("hide");
+    document.querySelector("#can_not_add .close_warning").addEventListener("click", closeDialog);
+    document.querySelector("#can_not_add #removeother").addEventListener("click", closeDialog);
+  }
+  //if ignore - do nothing
+  function closeDialog() {
+    document.querySelector("#can_not_add").classList.add("hide");
+    document.querySelector("#can_not_add .close_warning").removeEventListener("click", closeDialog);
+    document.querySelector("#can_not_add #removeother").removeEventListener("click", closeDialog);
+  }
 }
+
+// -->>>>>> END OF POP UP
 
 function expelTheStudent(student) {
   console.log("Expel the student");
@@ -459,20 +518,19 @@ function countSlytherins(student) {
   }
 }
 
-/// NUMBERS FOR HOUSES DON'T WORK WHEN FILTERING
-
 function displayNumbers(students) {
   // displayed students
   document.querySelector("#nr_displayed").textContent = `Displayed students : ${students.length}`;
 
   // avtive students
   document.querySelector("#nr_all").textContent = `Active students : ${allStudents.length}`;
+  // expelled students
   document.querySelector("#nr_expelled").textContent = `Expelled students : ${expelledStudents.length}`;
+  //houses
   document.querySelector("#nr_gryf").textContent = `Gryffindor: ${allStudents.filter(countGryffindors).length}`;
   document.querySelector("#nr_huff").textContent = `Hufflepuff: ${allStudents.filter(countHufflepuffs).length}`;
   document.querySelector("#nr_rav").textContent = `Ravenclaw: ${allStudents.filter(countRavenclaws).length}`;
   document.querySelector("#nr_slyt").textContent = `Slytherin: ${allStudents.filter(countSlytherins).length}`;
-  // expelled students
 }
 
 ////// ------->>> CLEANING THE DATA <<<-------- ////////

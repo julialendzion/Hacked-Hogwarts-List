@@ -277,7 +277,7 @@ td[data-field="first-name"]:hover {
 
 #row2 button {
   border: 1.5px solid var(--color-2);
-  border-radius: 25px;
+
   background-color: transparent;
   padding: 3px;
   width: 80px;
@@ -286,6 +286,15 @@ td[data-field="first-name"]:hover {
   color: var(--color-4);
 }
 
+#expell {
+  border-radius: 25px;
+}
+
+#squad {
+  display: block;
+  border-radius: 15px;
+  margin-top: 10px;
+}
 /* -------------WARNING STYLING---------------- */
 
 .prefect_warning {
@@ -332,4 +341,44 @@ td[data-field="first-name"]:hover {
 .prefect_warning .close_warning:hover {
   scale: 90%;
   cursor: pointer;
+}
+
+/* TRY AGAIN */
+
+.close_warning {
+  background-color: transparent;
+  border: 1px solid #ffe180;
+  position: absolute;
+  border-radius: 50%;
+  right: 0.3em;
+  top: 0.3em;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+.close_warning:hover {
+  background-color: #181818;
+}
+.dialog {
+  border-radius: 12px;
+  padding: 2em;
+  background-color: rgb(46, 46, 46);
+  position: relative;
+}
+.warning {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
