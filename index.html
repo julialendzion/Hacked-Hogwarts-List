@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Hogwarts Student List</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,7 +11,6 @@
       <h1>Hogwarts School of Witchcraft and Wizardry</h1>
 <span></span>
       <h2> &#10023 &#8902 Class of 1991 &#11090 &#10022  </h2>
-      <!-- &#9790 -->
     </header>
     <main>
       <div id="columns">
@@ -41,7 +40,7 @@
               </tr>
             </thead>
             <tbody id="active">
-              <!-- animal template will be copied and inserted here -->
+              <!-- student template will be copied and inserted here -->
             </tbody>
           </table>
 
@@ -68,6 +67,7 @@
           </div>
         </section>
       </div>
+
       <!-- POP UP -->
       <div id="popup" class="hidden">
         <div id="row1">
@@ -91,6 +91,7 @@
           <div>
           <button id="expell">EXPELL</button>
           <button id="squad">ADD TO SQUAD</button>
+        
         </div>
           <div id="popup_text">
           <p class="blood"></p>
@@ -99,11 +100,11 @@
           <p class="squad_stat"></p>
         </div>
         </div>
-        <!--add hide after styleing complete -->
       </div>
-      <!-- POP UP END -->
+      <!-- Student POP UP END -->
 
-        <!-- remove other -->
+    <!-- remove other prefect-->
+
     <div id="remove_other" class="prefect_warning hide">
       <div id="pref_info">
         <button class="close_warning">X</button>
@@ -117,21 +118,24 @@
     </div>
 
 
-     <!-- try again -->
+     <!-- can't add to squad warning -->
      <div id="can_not_add" class="squad_warning hide">
       <div class="dialog">
         <button class="close_warning">X</button>
         <h2 class="warning">Warning!</h2>
         <p>
-          To be a part of the inquisitorial squad, the student must be<br />
-          Pure-Blood or a student of the house Slytherin <br />
-          Try add another student who is!
+          Only a pure-blood student or a member of the Slytherin house can be a part of the inquisitorial squad<br />
+          Try adding another student! 
+       
         </p>
         <button class="removeother">I understand</button>
       </div>
     </div>
     </main>
-    <footer></footer>
+    <footer>
+      <button id="hack"> 🧨 </button>
+      <p>Julia Lendzion | Multimedia Desgin | September 2021</p>
+    </footer>
   </body>
   <script src="script.js"></script>
 </html>

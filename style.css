@@ -430,3 +430,26 @@ td[data-field="first-name"]:hover {
 #squad {
   font-size: 0.75em;
 }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer p {
+  margin-top: 20px;
+  font-size: 0.8em;
+  color: var(--color-6);
+}
+
+footer button {
+  font-size: 1.2em;
+  width: 30px;
+  margin: 10px;
+  color: var(--color-6);
+}
+
+footer button:hover {
+  cursor: pointer;
+  scale: 110%;
+}
