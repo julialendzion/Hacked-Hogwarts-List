@@ -313,16 +313,20 @@ function showPopUp(student) {
   }
 
   function clickExpel() {
-    student.expel = true;
+    if (student.lastName !== "Lendzion") {
+      student.expel = true;
 
-    popup.querySelector("#expell").style.backgroundColor = "black";
-    popup.querySelector("#expell").style.cursor = "";
-    popup.querySelector("#expell").textContent = "EXPELLED";
-    popup.querySelector(".expel_stat").textContent = `Student status: expelled`;
-    document.querySelector("#expell").removeEventListener("click", clickExpel);
-    expelTheStudent(student);
+      popup.querySelector("#expell").style.backgroundColor = "black";
+      popup.querySelector("#expell").style.cursor = "";
+      popup.querySelector("#expell").textContent = "EXPELLED";
+      popup.querySelector(".expel_stat").textContent = `Student status: expelled`;
+      document.querySelector("#expell").removeEventListener("click", clickExpel);
+      expelTheStudent(student);
 
-    buildList();
+      buildList();
+    } else {
+      popup.querySelector("#expell").textContent = "CAN'T EXPELL"; ///change to some cool animation
+    }
   }
 
   if (student.expel === true) {
@@ -476,7 +480,7 @@ function tryToMakeAPrefect(selectedStudent) {
       removePrefect(other);
       makePrefect(selectedStudent);
       buildList();
-      closeDialog();
+      closeWarn();
     }
   }
 
