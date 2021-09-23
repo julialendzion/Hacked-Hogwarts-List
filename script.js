@@ -340,7 +340,7 @@ function showPopUp(student) {
   }
 
   /// ADD TO SQUAD
-  /// --- > something wrong here, usually works but breaks sometimes ?
+
   if (student.squad === true) {
     popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
     document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
@@ -366,8 +366,10 @@ function showPopUp(student) {
     student.squad = false;
     document.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
     document.querySelector("#squad").textContent = "ADD TO SQUAD";
-    document.querySelector("#squad").addEventListener("click", clickAddSquad);
+
+    // document.querySelector("#squad").addEventListener("click", clickAddSquad);
     buildList();
+    checkSquad();
   }
 
   function tryToBeINSquad(selectedStudent) {
@@ -385,7 +387,7 @@ function showPopUp(student) {
     selectedStudent.squad = true;
     document.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
     document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
-    document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
+    checkSquad();
   }
 
   function tryAgain() {
@@ -393,13 +395,26 @@ function showPopUp(student) {
     document.querySelector("#can_not_add .close_warning").addEventListener("click", closeDialog);
     document.querySelector("#can_not_add .removeother").addEventListener("click", closeDialog);
   }
+
   //if ignore - do nothing
   function closeDialog() {
     document.querySelector("#can_not_add").classList.add("hide");
     document.querySelector("#can_not_add .close_warning").removeEventListener("click", closeDialog);
     document.querySelector("#can_not_add .removeother").removeEventListener("click", closeDialog);
+    checkSquad();
   }
 
+  function checkSquad() {
+    if (student.squad === true) {
+      popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
+      document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
+      document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
+    } else {
+      popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
+      document.querySelector("#squad").textContent = "ADD TO SQUAD";
+      document.querySelector("#squad").addEventListener("click", clickAddSquad);
+    }
+  }
   // set the pop up color according to the houses
 
   if (student.house === "Slytherin") {
