@@ -276,7 +276,6 @@ function displayStudent(student) {
 // -----------> POP UP
 
 function showPopUp(student) {
-  console.log("pop up");
   closePop.style.display = "";
   popup.style.display = "";
 
@@ -387,7 +386,6 @@ function showPopUp(student) {
   }
 
   function tryAgain() {
-    console.log("try again");
     document.querySelector("#can_not_add").classList.remove("hide");
     document.querySelector("#can_not_add .close_warning").addEventListener("click", closeDialog);
     document.querySelector("#can_not_add .removeother").addEventListener("click", closeDialog);
