@@ -325,6 +325,10 @@ function showPopUp(student) {
 
       buildList();
     } else {
+      document.querySelector("#expelling_me").classList.remove("hide");
+      setTimeout(function () {
+        document.querySelector("#expelling_me").classList.add("hide");
+      }, 2500);
       popup.querySelector("#expell").textContent = "CAN'T EXPELL"; ///change to some cool animation
     }
   }
@@ -336,6 +340,7 @@ function showPopUp(student) {
   }
 
   /// ADD TO SQUAD
+  /// --- > something wrong here, usually works but breaks sometimes ?
   if (student.squad === true) {
     popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
     document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
@@ -468,7 +473,6 @@ function tryToMakeAPrefect(selectedStudent) {
 
     document.querySelector("#remove_other [data-field=otherprefect]").textContent = other.firstName;
 
-    //if ignore - do nothing
     function closeWarn() {
       document.querySelector("#remove_other").classList.add("hide");
       document.querySelector("#remove_other .close_warning").removeEventListener("click", closeWarn);
@@ -622,8 +626,10 @@ function hackTheSystem() {
     settings.hacked = true;
 
     // VISUALS
-    document.querySelector("body").style.backgroundColor = "";
-
+    document.querySelector("#hacking").classList.remove("hide");
+    setTimeout(function () {
+      document.querySelector("#hacking").classList.add("hide");
+    }, 2500);
     // random blood type
     messWithBloodstatus();
 
@@ -646,11 +652,11 @@ function addMe() {
   me.lastName = "Lendzion";
   me.middleName = "";
   me.nickname = "";
-  me.gender = "";
+  me.gender = "female";
   me.house = "Slytherin";
-  me.bloodstatus = "";
-  me.prefect = false;
-  me.squad = false;
+  me.bloodstatus = "pure-blood";
+  me.prefect = true;
+  me.squad = true;
   me.expel = false;
 
   allStudents.unshift(me);

@@ -453,3 +453,106 @@ footer button:hover {
   cursor: pointer;
   scale: 110%;
 }
+
+/*------> HACKED SYSTEM STYLING <---------*/
+
+.hacked_main {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(118, 112, 112, 0.742);
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.center_hacked {
+  width: 50%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.center_hacked ul {
+  display: flex;
+  justify-content: center;
+}
+
+.center_hacked ul li {
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 7rem;
+  padding-left: 2rem;
+  animation: light 1s linear infinite;
+  color: var(--color-7);
+  font-family: var(--font-3);
+}
+.center_hacked ul li:first-child {
+  padding-left: 0;
+}
+
+@keyframes light {
+  0% {
+    color: var(--color-7);
+    text-shadow: none;
+  }
+  80% {
+    color: var(--color-7);
+    text-shadow: none;
+  }
+  100% {
+    color: var(--color-4);
+    text-shadow: 0 0 1rem var(--color-4), 0 0 1rem var(--color-4);
+  }
+}
+
+.center_hacked ul li:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.center_hacked ul li:nth-child(8) {
+  animation-delay: 0.2s;
+}
+
+/*TRYING TO EXPEL ME*/
+
+.center_expelling_me {
+  width: 70%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.center_expelling_me ul {
+  display: flex;
+  justify-content: center;
+}
+
+.center_expelling_me ul li {
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 6vw;
+  font-weight: 900;
+  text-align: center;
+  padding-left: 2rem;
+  animation: light 1s linear infinite;
+  color: var(--color-7);
+  font-family: var(--font-3);
+}
+.center_expelling_me ul li:first-child {
+  padding-left: 0;
+}
+
+.center_expelling_me ul li:nth-child(1) {
+  animation-delay: 0.2s;
+  font-size: 15vw;
+}
+
+.center_expelling_me ul li:nth-child(3) {
+  animation-delay: 0.2s;
+  font-size: 15vw;
+  padding-left: 0;
+}
