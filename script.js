@@ -32,8 +32,6 @@ const settings = {
 
 function start() {
   console.log("ready");
-
-  // TODO: Add event-listeners to filter and sort buttons --> function registerButtons
   registerButtons();
   loadJSON();
   registerSearch();
@@ -72,7 +70,6 @@ function prepareObjects(jsonData, jsonDataBlood) {
   allBloodStatus = jsonDataBlood;
   setBloodStatus(jsonDataBlood);
 
-  // fixed TODO: Add filtering here !!! This might not be the function we want to call first
   console.log(allStudents);
   buildList();
 }
@@ -367,7 +364,6 @@ function showPopUp(student) {
     document.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
     document.querySelector("#squad").textContent = "ADD TO SQUAD";
 
-    // document.querySelector("#squad").addEventListener("click", clickAddSquad);
     buildList();
     checkSquad();
   }
@@ -396,7 +392,6 @@ function showPopUp(student) {
     document.querySelector("#can_not_add .removeother").addEventListener("click", closeDialog);
   }
 
-  //if ignore - do nothing
   function closeDialog() {
     document.querySelector("#can_not_add").classList.add("hide");
     document.querySelector("#can_not_add .close_warning").removeEventListener("click", closeDialog);
@@ -606,8 +601,6 @@ function getStudentsNickname(fullName) {
 }
 
 function getImage(lastname, firstname) {
-  // lastname_firstletteroffirstname.png
-
   if (lastname !== undefined) {
     const smallLastName = lastname.toLowerCase();
     const smallFirstName = firstname.toLowerCase();
@@ -645,10 +638,9 @@ function hackTheSystem() {
     setTimeout(function () {
       document.querySelector("#hacking").classList.add("hide");
     }, 2500);
+
     // random blood type
     messWithBloodstatus();
-
-    //inquisitorial squad only works for a limited time
 
     //Add myself as student
     addMe();
