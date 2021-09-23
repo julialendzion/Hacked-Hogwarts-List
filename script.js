@@ -364,7 +364,6 @@ function showPopUp(student) {
     document.querySelector("#squad").textContent = "ADD TO SQUAD";
 
     buildList();
-    // checkSquad();
   }
 
   function tryToBeINSquad(selectedStudent) {
@@ -395,20 +394,7 @@ function showPopUp(student) {
     document.querySelector("#can_not_add").classList.add("hide");
     document.querySelector("#can_not_add .close_warning").removeEventListener("click", closeDialog);
     document.querySelector("#can_not_add .removeother").removeEventListener("click", closeDialog);
-    // checkSquad()
   }
-
-  // function checkSquad() {
-  //   if (student.squad === true) {
-  //     popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
-  //     document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
-  //     document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
-  //   } else {
-  //     popup.querySelector(".squad_stat").textContent = `Inquisitorial squad: not a member`;
-  //     document.querySelector("#squad").textContent = "ADD TO SQUAD";
-  //     document.querySelector("#squad").addEventListener("click", clickAddSquad);
-  //   }
-  // }
 
   // set the pop up color according to the houses
 
