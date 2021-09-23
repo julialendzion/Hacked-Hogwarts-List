@@ -382,7 +382,7 @@ function showPopUp(student) {
     selectedStudent.squad = true;
     document.querySelector(".squad_stat").textContent = `Inquisitorial squad: member`;
     document.querySelector("#squad").textContent = "REMOVE FROM SQUAD";
-    // checkSquad()
+    document.querySelector("#squad").addEventListener("click", clickRemoveSquad);
   }
 
   function tryAgain() {
